@@ -5,8 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Millionaire"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="475" Width="550"
+        ResizeMode="NoResize">
+    <DockPanel>
 
-    </Grid>
+        <UniformGrid DockPanel.Dock="Bottom"
+                     Columns="2"
+                     Rows= "2"
+                     Height= "90">
+            <Button Foreground="AntiqueWhite" 
+                    FontWeight="Bold"
+                    Background="DarkSlateBlue"
+                    Content ="A" />
+            <Button Foreground="AntiqueWhite" 
+                    FontWeight="Bold"
+                    Background="DarkSlateBlue"
+                    Content ="B" />
+            <Button Foreground="AntiqueWhite" 
+                    FontWeight="Bold"
+                    Background="DarkSlateBlue"
+                    Content ="C" />
+            <Button Foreground="AntiqueWhite" 
+                    FontWeight="Bold"
+                    Background="DarkSlateBlue"
+                    Content ="D" />
+            
+        </UniformGrid>
+
+        <Border DockPanel.Dock="Right" 
+                BorderBrush="AntiqueWhite" 
+                BorderThickness="1"
+                Background="Purple"
+                TextElement.FontSize="12"
+                TextElement.Foreground="AliceBlue"
+                TextElement.FontWeight="Bold"
+                Width="130">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Foreground="AntiqueWhite" Grid.Row="0">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="1">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="2">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="3">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="4">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="5">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="6">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="7">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="8">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="9">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="10">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="11">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="12">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="13">10000</Label>
+                <Label Foreground="AntiqueWhite" Grid.Row="14">10000</Label>
+            </Grid>
+        </Border>
+
+
+        <Grid Background="DarkBlue">
+            <Label Foreground="AntiqueWhite"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center">Test</Label>
+        </Grid>
+        
+    </DockPanel>
 </Window>
