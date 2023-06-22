@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Millionaire"
         mc:Ignorable="d"
-        Title="MainWindow" Height="475" Width="550"
+        Title="Millionaire" Height="475" Width="550"
         ResizeMode="NoResize">
+    
     <DockPanel>
-
         <UniformGrid DockPanel.Dock="Bottom"
                      Columns="2"
                      Rows= "2"
@@ -33,9 +33,9 @@
         </UniformGrid>
 
         <Border DockPanel.Dock="Right" 
-                BorderBrush="AntiqueWhite" 
-                BorderThickness="1"
-                Background="Purple"
+                BorderBrush="Gray" 
+                BorderThickness="2"
+                Background="DarkSlateBlue"
                 TextElement.FontSize="12"
                 TextElement.Foreground="AliceBlue"
                 TextElement.FontWeight="Bold"
@@ -79,7 +79,7 @@
         </Border>
 
 
-        <Grid Background="DarkBlue">
+        <Grid Background="DarkSlateBlue">
             <Label Foreground="AntiqueWhite"
                    FontSize="30"
                    FontWeight="Bold"
