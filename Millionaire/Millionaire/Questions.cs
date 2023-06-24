@@ -14,13 +14,13 @@ class Questions
 
     public List<Question> QuestionList
     {
-        get => questionList;
+        get => this.questionList;
         set
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
 
-            questionList = value;
+            this.questionList = value;
         }
     }
 }

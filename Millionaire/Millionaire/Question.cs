@@ -16,35 +16,35 @@ namespace Millionaire
 
         public string Text
         {
-            get => text;
+            get => this.text;
             set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new ArgumentNullException(nameof(text));
+                    throw new ArgumentNullException(nameof(this.text));
 
-                text = value;
+                this.text = value;
             }
         }
 
         public List<string> Answers
         {
-            get => answers;
+            get => this.answers;
             set { 
                 if (value == null)
-                    throw new ArgumentNullException(nameof(answers));
-                
-                answers = value;
+                    throw new ArgumentNullException(nameof(this.answers));
+
+                this.answers = value;
             }
         }
 
         public int Prize
         {
-            get => prize;
+            get => this.prize;
             set {
                 if (value == 0)
-                    throw new ArgumentNullException(nameof(prize));
-                
-                prize = value;
+                    throw new ArgumentNullException(nameof(this.prize));
+
+                this.prize = value;
             }
         }
 
@@ -54,7 +54,7 @@ namespace Millionaire
             set
             {
                 if (value < 0) 
-                    throw new ArgumentOutOfRangeException(nameof(correctAnswerIndex));
+                    throw new ArgumentOutOfRangeException(nameof(this.correctAnswerIndex));
 
                 this.correctAnswerIndex = value;
             }
@@ -62,10 +62,10 @@ namespace Millionaire
 
         public Question(string text, List<string> answers, int prize, int correctAnswerIndex)
         {
-            Text = text;
-            Answers = answers;
-            Prize = prize;
-            CorrectAnswerIndex = correctAnswerIndex;
+            this.Text = text;
+            this.Answers = answers;
+            this.Prize = prize;
+            this.CorrectAnswerIndex = correctAnswerIndex;
         }
     }
 }

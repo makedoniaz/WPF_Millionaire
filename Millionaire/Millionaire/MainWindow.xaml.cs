@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,50 +21,50 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private const int amountOfQuestions = 15;
 
-    private string questionText;
-    private string firstAnswer;
-    private string secondAnswer;
-    private string thirdAnswer;
-    private string fourthAnswer;
-    private int currentPrize;
+    private string? questionText;
+    private string? firstAnswer;
+    private string? secondAnswer;
+    private string? thirdAnswer;
+    private string? fourthAnswer;
+    private int? currentPrize;
 
     private int currentQuestionIndex = 0;
-    private int correctAnswerIndex;
+    private int? correctAnswerIndex;
 
-    public string QuestionText 
+    public string? QuestionText 
     {
-        get => questionText;
-        set => this.PropertyChangeMethod(out questionText, value);
+        get => this.questionText;
+        set => this.PropertyChangeMethod(out this.questionText, value);
     }
 
-    public string FirstAnswer
+    public string? FirstAnswer
     {
-        get => firstAnswer;
-        set => this.PropertyChangeMethod(out firstAnswer, value);
+        get => this.firstAnswer;
+        set => this.PropertyChangeMethod(out this.firstAnswer, value);
     }
 
-    public string SecondAnswer
+    public string? SecondAnswer
     {
-        get => secondAnswer;
-        set => this.PropertyChangeMethod(out secondAnswer, value);
+        get => this.secondAnswer;
+        set => this.PropertyChangeMethod(out this.secondAnswer, value);
     }
 
-    public string ThirdAnswer
+    public string? ThirdAnswer
     {
-        get => thirdAnswer;
-        set => this.PropertyChangeMethod(out thirdAnswer, value);
+        get => this.thirdAnswer;
+        set => this.PropertyChangeMethod(out this.thirdAnswer, value);
     }
 
-    public string FourthAnswer
+    public string? FourthAnswer
     {
-        get => fourthAnswer;
-        set => this.PropertyChangeMethod(out fourthAnswer, value);
+        get => this.fourthAnswer; 
+        set => this.PropertyChangeMethod(out this.fourthAnswer, value);
     }
 
-    public int CurrentPrize
+    public int? CurrentPrize
     {
-        get => currentPrize;
-        set => this.PropertyChangeMethod(out currentPrize, value);
+        get => this.currentPrize; 
+        set => this.PropertyChangeMethod(out this.currentPrize, value);
     }
 
     private void PropertyChangeMethod<T>(out T field, T value, [CallerMemberName] string propName = "")
@@ -71,14 +72,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         field = value;
 
         if (this.PropertyChanged != null)
-        {
             this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
     }
 
     public int CurrentQuestionIndex
     {
-        get => currentQuestionIndex;
+        get => this.currentQuestionIndex;
         set {
             if (value >= amountOfQuestions)
                 Environment.Exit(0);
@@ -89,13 +88,14 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     public void SetUpCurrentQuestion()
     {
-        QuestionText = this.questions.QuestionList[currentQuestionIndex].Text;
-        FirstAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[0];
-        SecondAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[1];
-        ThirdAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[2];
-        FourthAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[3];
-        CurrentPrize = this.questions.QuestionList[currentQuestionIndex].Prize;
-        this.correctAnswerIndex = this.questions.QuestionList[currentQuestionIndex].CorrectAnswerIndex;
+        
+        this.QuestionText = this.questions?.QuestionList[currentQuestionIndex].Text;
+        this.FirstAnswer = this.questions?.QuestionList[currentQuestionIndex].Answers[0];
+        this.SecondAnswer = this.questions?.QuestionList[currentQuestionIndex].Answers[1];
+        this.ThirdAnswer = this.questions?.QuestionList[currentQuestionIndex].Answers[2];
+        this.FourthAnswer = this.questions?.QuestionList[currentQuestionIndex].Answers[3];
+        this.CurrentPrize = this.questions?.QuestionList[currentQuestionIndex].Prize;
+        this.correctAnswerIndex = this.questions?.QuestionList[currentQuestionIndex].CorrectAnswerIndex;
     }
 
     public MainWindow()
@@ -112,17 +112,18 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         if (sender is Button chosenAnswer)
         {
-            string correctAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[correctAnswerIndex];
-
+            string? correctAnswer = this.questions?.QuestionList[currentQuestionIndex].Answers[correctAnswerIndex ?? 0];
 
             if (chosenAnswer.Content.ToString() == correctAnswer)
             {
-                CurrentQuestionIndex++;
+                this.CurrentQuestionIndex++;
                 SetUpCurrentQuestion();
+
+                return;
             }
 
-            else
+                Thread.Sleep(1000);
                 Environment.Exit(0);
-        }
+            }
     }
 }
