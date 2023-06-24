@@ -1,24 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Millionaire;
 
@@ -39,6 +25,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private string secondAnswer;
     private string thirdAnswer;
     private string fourthAnswer;
+    private int currentPrize;
 
     private int currentQuestionIndex = 0;
     private int correctAnswerIndex;
@@ -73,6 +60,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         set => this.PropertyChangeMethod(out fourthAnswer, value);
     }
 
+    public int CurrentPrize
+    {
+        get => currentPrize;
+        set => this.PropertyChangeMethod(out currentPrize, value);
+    }
+
     private void PropertyChangeMethod<T>(out T field, T value, [CallerMemberName] string propName = "")
     {
         field = value;
@@ -87,7 +80,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         get => currentQuestionIndex;
         set {
-            if (value > amountOfQuestions)
+            if (value >= amountOfQuestions)
                 Environment.Exit(0);
 
             this.currentQuestionIndex = value;
@@ -101,6 +94,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         SecondAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[1];
         ThirdAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[2];
         FourthAnswer = this.questions.QuestionList[currentQuestionIndex].Answers[3];
+        CurrentPrize = this.questions.QuestionList[currentQuestionIndex].Prize;
         this.correctAnswerIndex = this.questions.QuestionList[currentQuestionIndex].CorrectAnswerIndex;
     }
 
@@ -123,15 +117,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
             if (chosenAnswer.Content.ToString() == correctAnswer)
             {
-                Console.WriteLine("Success!");
-                currentQuestionIndex++;
+                CurrentQuestionIndex++;
                 SetUpCurrentQuestion();
             }
 
             else
-            {
                 Environment.Exit(0);
-            }
         }
     }
 }

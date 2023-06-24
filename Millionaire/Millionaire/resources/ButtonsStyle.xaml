@@ -4,7 +4,8 @@
         <Style.Setters>
             <Setter Property="Foreground" Value="AntiqueWhite"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="DarkSlateBlue"/>
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="FontSize" Value="16"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>
